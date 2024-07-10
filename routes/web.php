@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 // list product
-Route::get('list-product', [ProductController::class, 'showProduct']);
+// Route::get('list-product', [ProductController::class, 'showProduct']);
 Route::get('bai3', [ProductController::class, 'thongtinsv']);
 
 // Slug và Params
@@ -37,7 +37,7 @@ Route::get('get-product/{id}', [ProductController::class, 'getProduct']);
 
 // params
 // http://127.0.0.1:8000/update-product?id=1&name=iphone
-Route::get('update-product', [ProductController::class, 'updateProduct']);
+// Route::get('update-product', [ProductController::class, 'updateProduct']);
 
 // CRUD -> query builder
 Route::group([
@@ -77,26 +77,26 @@ Route::group([
     'as' => 'product.'
 ], function () {
 
-    Route::get('list-product', [UserController::class, 'listProduct'])
+    Route::get('list-product', [ProductController::class, 'listProduct'])
     ->name('listProduct');
 
     
-    Route::get('add-product', [UserController::class, 'addProduct'])
+    Route::get('add-product', [ProductController::class, 'addProduct'])
     ->name('add');
 
-    Route::post('add-product', [UserController::class, 'addPostProduct'])
+    Route::post('add-product', [ProductController::class, 'addPostProduct'])
     ->name('addPostProduct');
 
 
-    Route::get('delete-product/{productId}', [UserController::class, 'deleteProduct'])
+    Route::get('delete-product/{productId}', [ProductController::class, 'deleteProduct'])
     ->name('deleteProduct');
 
 
-    Route::get('update-product/{productId}', [UserController::class, 'updateProduct'])
+    Route::get('update-product/{productId}', [ProductController::class, 'updateProduct'])
     ->name('updateProduct');
 
 
-    Route::post('update-product', [UserController::class, 'updatePostProduct'])
+    Route::post('update-product', [ProductController::class, 'updatePostProduct'])
     ->name('updatePostProduct');
 
 });
