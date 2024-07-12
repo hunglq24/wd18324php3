@@ -47,26 +47,26 @@ Route::group([
 ], function () {
     // http://127.0.0.1:8000/users/list-users
     Route::get('list-users', [UserController::class, 'listUsers'])
-    ->name('listUsers');
+        ->name('listUsers');
 
     // http://127.0.0.1:8000/users/add-users
     Route::get('add-users', [UserController::class, 'addUsers'])
-    ->name('add');
+        ->name('add');
 
     Route::post('add-users', [UserController::class, 'addPostUsers'])
-    ->name('addPostUsers');
+        ->name('addPostUsers');
 
 
     Route::get('delete-users/{userId}', [UserController::class, 'deleteUser'])
-    ->name('deleteUser');
+        ->name('deleteUser');
 
 
     Route::get('update-users/{userId}', [UserController::class, 'updateUser'])
-    ->name('updateUser');
+        ->name('updateUser');
 
 
     Route::post('update-users', [UserController::class, 'updatePostUsers'])
-    ->name('updatePostUsers');
+        ->name('updatePostUsers');
 
 });
 
@@ -79,25 +79,28 @@ Route::group([
 ], function () {
 
     Route::get('list-product', [ProductsController::class, 'listProduct'])
-    ->name('listProduct');
+        ->name('listProduct');
 
-    
+
     Route::get('add-product', [ProductsController::class, 'addProduct'])
-    ->name('add');
+        ->name('add');
 
     Route::post('add-product', [ProductsController::class, 'addPostProduct'])
-    ->name('addPostProduct');
+        ->name('addPostProduct');
 
 
     Route::get('delete-product/{productId}', [ProductsController::class, 'deleteProduct'])
-    ->name('deleteProduct');
+        ->name('deleteProduct');
 
 
     Route::get('update-product/{productId}', [ProductsController::class, 'updateProduct'])
-    ->name('updateProduct');
+        ->name('updateProduct');
 
 
     Route::post('update-product', [ProductsController::class, 'updatePostProduct'])
-    ->name('updatePostProduct');
+        ->name('updatePostProduct');
 
 });
+
+
+Route::get('test', [UserController::class, 'test']);

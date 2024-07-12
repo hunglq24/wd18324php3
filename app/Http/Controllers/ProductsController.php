@@ -8,11 +8,22 @@ use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
-    public function listProduct(){
-        $listProduct = DB::table('product')
-        ->join('category', 'product.category_id', '=', 'category.id')
-        ->select('product.id', 'product.name', 'product.price', 'product.view', 'product.category_id', 'category.name_ct')
-        ->get();
+    public function listProduct(Request $request){
+        if ($request->kyw) {
+            $kyw = $request -> kyw;
+            $listProduct = DB::table('product')
+            ->join('category', 'product.category_id', '=', 'category.id')
+            ->select('product.id', 'product.name', 'product.price', 'product.view', 'product.category_id', 'category.name_ct')
+            ->where('product.name', 'like', '%'. $kyw .'%')
+            ->get();
+        } else {
+            $listProduct = DB::table('product')
+            ->join('category', 'product.category_id', '=', 'category.id')
+            ->select('product.id', 'product.name', 'product.price', 'product.view', 'product.category_id', 'category.name_ct')
+            ->get();
+        }
+
+        
         return view('product/listProduct')->with([
             'listProduct' => $listProduct
         ]);
