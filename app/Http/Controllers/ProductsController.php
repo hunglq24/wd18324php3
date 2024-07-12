@@ -22,7 +22,7 @@ class ProductsController extends Controller
         $category = DB::table('category')
         ->select('id', 'name_ct')
         ->get();
-        return view('users/addProduct')->with([
+        return view('product/addProduct')->with([
             'category' => $category
         ]);
     }
@@ -30,11 +30,11 @@ class ProductsController extends Controller
     public function addPostProduct(Request $req){
         $data = [
             'name' => $req->name, // $req->name <=> $_POST['name]
-            'price' => $req->email,
+            'price' => $req->price,
             'category_id' => $req->category,
             'view' => $req->view,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'create_at' => Carbon::now(),
+            'update_at' => Carbon::now()
         ];
         DB::table('product')->insert($data);
 
@@ -62,11 +62,11 @@ class ProductsController extends Controller
     public function updatePostProduct(Request $req){
         $data = [
             'name' => $req->name, // $req->name <=> $_POST['name]
-            'price' => $req->email,
+            'price' => $req->price,
             'category_id' => $req->category,
             'view' => $req->view,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'create_at' => Carbon::now(),
+            'update_at' => Carbon::now()
         ];
         DB::table('product')->where('id', $req->productId)->update($data);
 

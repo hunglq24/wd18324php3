@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductsController;
 
 
 
@@ -77,26 +78,26 @@ Route::group([
     'as' => 'product.'
 ], function () {
 
-    Route::get('list-product', [ProductController::class, 'listProduct'])
+    Route::get('list-product', [ProductsController::class, 'listProduct'])
     ->name('listProduct');
 
     
-    Route::get('add-product', [ProductController::class, 'addProduct'])
+    Route::get('add-product', [ProductsController::class, 'addProduct'])
     ->name('add');
 
-    Route::post('add-product', [ProductController::class, 'addPostProduct'])
+    Route::post('add-product', [ProductsController::class, 'addPostProduct'])
     ->name('addPostProduct');
 
 
-    Route::get('delete-product/{productId}', [ProductController::class, 'deleteProduct'])
+    Route::get('delete-product/{productId}', [ProductsController::class, 'deleteProduct'])
     ->name('deleteProduct');
 
 
-    Route::get('update-product/{productId}', [ProductController::class, 'updateProduct'])
+    Route::get('update-product/{productId}', [ProductsController::class, 'updateProduct'])
     ->name('updateProduct');
 
 
-    Route::post('update-product', [ProductController::class, 'updatePostProduct'])
+    Route::post('update-product', [ProductsController::class, 'updatePostProduct'])
     ->name('updatePostProduct');
 
 });

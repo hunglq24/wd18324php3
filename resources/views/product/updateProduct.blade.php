@@ -13,7 +13,7 @@
         Name :
         <input type="text" name="name" value="{{ $product->name }}"> <br>
         Price :
-        <input type="number" name="price" id="" value="{{ $product->price }}"> <br>
+        <input type="text" name="price" id="" value="{{ $product->price }}"> <br>
         Category : 
             <select name="category" >
                 @foreach ($category as $value)
