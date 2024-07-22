@@ -10,19 +10,19 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('product_comment', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('userId'); // unsigned : ko am
-            $table->unsignedInteger('productId');
-            $table->foreign('userId')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-            $table->foreign('productId')
-                ->references('id')->on('products')
-                ->onDelete('cascade');
-            $table->string('comment', 500);    
-            $table->timestamps(); // created_at | updated_at
-        });
+        // Schema::create('product_comment', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->unsignedInteger('userId'); // unsigned : ko am
+        //     $table->unsignedInteger('productId');
+        //     $table->foreign('userId')
+        //         ->references('id')->on('users')
+        //         ->onDelete('cascade');
+        //     $table->foreign('productId')
+        //         ->references('id')->on('products')
+        //         ->onDelete('cascade');
+        //     $table->string('comment', 500);    
+        //     $table->timestamps(); // created_at | updated_at
+        // });
     }
 
     /**

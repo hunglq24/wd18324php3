@@ -13,10 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('id'); // id: int | unsigned | primary
+            $table->increments('product_id'); // id: int | unsigned | primary
             $table->string('name', 200);
-            $table->float('price', 8, 2); //8.22
+            $table->float('price', 10, 2); //8.22
             $table->integer('view');
+            $table->string('description', 500)->nullable;
             $table->timestamps();
         });
     }

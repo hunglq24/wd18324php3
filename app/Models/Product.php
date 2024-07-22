@@ -9,5 +9,6 @@ class Product extends Model
 {
     use HasFactory; // trait
     protected $table = 'products';
+    public $primaryKey = 'product_id';
 
 }
