@@ -5,9 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
 
-
-
-
+use App\Http\Controllers\Admin\ProductController as ProductContro;
 
 
 
@@ -104,3 +102,39 @@ Route::group([
 
 
 Route::get('test', [UserController::class, 'test']);
+
+
+
+
+// http://127.0.0.1:8000/admin/products/
+// CRUD product
+
+Route::group(
+    ['prefix' => 'admin', 'as' => 'admin.'],
+    function () {
+        Route::group(
+            ['prefix' => 'products', 'as' => 'products.'],
+            function () {
+                // CRUD product
+                Route::get('/', [ProductContro::class, 'listProduct'])
+                    ->name('listProduct');
+
+                Route::get('add-product', [ProductContro::class, 'addProduct'])
+                    ->name('addProduct');
+
+                Route::post('add-product', [ProductContro::class, 'addPostProduct'])
+                    ->name('addPostProduct');
+
+                Route::delete('delete-product/{product_id}', [ProductContro::class, 'deleteProduct'])
+                    ->name('deleteProduct');
+
+                Route::get('update-product/{product_id}', [ProductContro::class, 'updateProduct'])
+                    ->name('updateProduct');
+
+                Route::put('update-product/{product_id}', [ProductContro::class, 'updatePostProduct'])
+                    ->name('updatePostProduct');
+            }
+        );
+
+    }
+);
