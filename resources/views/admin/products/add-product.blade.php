@@ -21,6 +21,10 @@
                 <label for="viewProduct">View:</label>
                 <input type="number" id="viewProduct" class="form-control" name="viewProduct">
             </div>
+            <div class="mb-3">
+                <label for="descriptionProduct">Description:</label>
+                <input type="text" id="descriptionProduct" class="form-control" name="descriptionProduct">
+            </div>
             {{-- Description: 
             <input type="text" class="form-control" name="descriptionProduct"> --}}
             <div class="mb-3">

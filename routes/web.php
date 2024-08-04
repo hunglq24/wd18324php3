@@ -1,13 +1,19 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Admin\ProductController as ProductContro;
 
-
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'postLogin'])->name('postLogin');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'postRegister'])->name('postRegister');
 
 // method http
 //  + get, post, put, pacth, delete
@@ -110,7 +116,8 @@ Route::get('test', [UserController::class, 'test']);
 // CRUD product
 
 Route::group(
-    ['prefix' => 'admin', 'as' => 'admin.'],
+    ['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'checkAdmin'],
+
     function () {
         Route::group(
             ['prefix' => 'products', 'as' => 'products.'],
@@ -131,8 +138,11 @@ Route::group(
                 Route::get('update-product/{product_id}', [ProductContro::class, 'updateProduct'])
                     ->name('updateProduct');
 
-                Route::put('update-product/{product_id}', [ProductContro::class, 'updatePostProduct'])
-                    ->name('updatePostProduct');
+                Route::put('update-product/{product_id}', [ProductContro::class, 'updatePutProduct'])
+                    ->name('updatePutProduct');
+
+                    Route::get('detail-product/{product_id}', [ProductContro::class, 'detailProduct'])
+                    ->name('detailProduct');
             }
         );
 

@@ -64,7 +64,36 @@ class ProductController extends Controller
         ]);
     }
 
-    public function updatePostProduct($product_id, Request $req){
+    public function updatePutProduct($product_id, Request $req){
+        $product = Product::where('product_id', $product_id)->first();
+        $linkImage = $product->image;
+        if($req->hasFile('imageProduct')){
+            File::delete(public_path($product->image)); // xóa file cũ
+            $image = $req->file('imageProduct');
+            $newName = time() .".". $image->getClientOriginalExtension();
+            $linkStorage = 'imageProducts/';
+            $image->move(public_path($linkStorage), $newName);
 
+            $linkImage = $linkStorage . $newName;
+        }
+        $data = [
+            'name' => $req->nameProduct,
+            'price' => $req->priceProduct,
+            'view' => $req->viewProduct,
+            'description' => $req->descriptionProduct,
+            'image' => $linkImage
+            
+        ];
+        Product::where('product_id', $product_id)->update($data);
+        return redirect()->route('admin.products.listProduct')->with([
+            'message' => 'Sửa thành công'
+        ]);
+    }
+
+    public function detailProduct($product_id){
+        $product = Product::where('product_id', $product_id)->first();
+        return view('admin.products.detail-product')->with([
+            'product' => $product
+        ]);
     }
 }

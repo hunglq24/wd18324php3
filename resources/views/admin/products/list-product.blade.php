@@ -16,7 +16,7 @@
                     <th scope="col">Tên sản phẩm</th>
                     <th scope="col">Giá sản phẩm</th>
                     <th scope="col">View</th>
-                    {{-- <th scope="col">description</th> --}}
+                    <th scope="col">description</th>
                     <th scope="col">Ảnh</th>
                     <th scope="col">Hành động</th>
                 </tr>
@@ -28,12 +28,13 @@
                     <td>{{$value->name}}</td>
                     <td>{{$value->price}}</td>
                     <td>{{$value->view}}</td>
-                    {{-- <td>{{$value->description}}</td> --}}
+                    <td>{{$value->description}}</td>
                     <td>
                         <img class="img-product" 
                         src="{{ asset($value->image) }}" alt="" width="100px" height="100px">
                     </td>
                     <td>
+                        <a href="{{ route('admin.products.detailProduct', $value->product_id) }}" class="btn btn-info">Chi Tiết</a>
                         <a href="{{ route('admin.products.updateProduct', $value->product_id) }}" class="btn btn-warning">Sửa</a>
 
                         <form action="{{ route('admin.products.deleteProduct', $value->product_id)}}" method="POST">
